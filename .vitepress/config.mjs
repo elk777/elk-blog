@@ -3,6 +3,7 @@ import  { nav, sidebar } from './elkConf/index'
 
 export default defineConfig({
   // 基础配置
+  base: '/elk-blog', // 基础路径
   title: "灰原同学的猫",
   titleTemplate: "欢迎您",
   lastUpdated: true,
