@@ -1,0 +1,2 @@
+import{_ as t,c as a,o,m as e}from"./chunks/framework.CI8or701.js";const h=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"elk-growth/Summary/index.md","filePath":"elk-growth/Summary/index.md","lastUpdated":null}'),n={name:"elk-growth/Summary/index.md"},r=e("pre",null,[e("code",null,`layout: doc
+`)],-1),s=[r];function d(c,l,i,m,_,p){return o(),a("div",null,s)}const f=t(n,[["render",d]]);export{h as __pageData,f as default};
