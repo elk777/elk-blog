@@ -16,9 +16,9 @@
     --vp-c-brand-1: var(--vp-c-purple);
     --vp-c-brand-2: var(--vp-c-purple-dark);
     --vp-c-brand-3: var(--vp-c-purple);
-    /*--vp-c-brand-light: var(--vp-c-purple-light);*/
-    /*--vp-c-brand-lighter: var(--vp-c-purple-lighter);*/
-    /*--vp-c-brand-dark: var(--vp-c-purple-dark);*/
-    /*--vp-c-brand-darker: var(--vp-c-purple-darker);*/
+    --vp-c-brand-light: var(--vp-c-purple-light);
+    --vp-c-brand-lighter: var(--vp-c-purple-lighter);
+    --vp-c-brand-dark: var(--vp-c-purple-dark);
+    --vp-c-brand-darker: var(--vp-c-purple-darker);
 }
 

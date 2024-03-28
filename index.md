@@ -7,7 +7,7 @@ hero:
   text: "keep awake，keep progress"
   tagline: "/啥也不会/啥也不干/啥也想要/"
   image: 
-    src: '/common/icon.png'
+    src: 'common/icon.png'
     alt: "时间过得越久，人心的距离就越远"
   actions:
     - theme: brand
