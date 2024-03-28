@@ -10,7 +10,7 @@ export default defineConfig({
   // 主题配置
   themeConfig: {
     // 顶部左侧标题logo
-    logo: 'common/icon.png',
+    logo: '/common/icon.png',
 
     // 顶部右上：专题栏
     nav: nav,
