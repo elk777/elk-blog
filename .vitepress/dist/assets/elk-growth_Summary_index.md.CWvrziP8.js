@@ -1,0 +1,2 @@
+import{_ as t,c as a,o,m as e}from"./chunks/framework.DEY5RrVY.js";const h=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"elk-growth/Summary/index.md","filePath":"elk-growth/Summary/index.md","lastUpdated":1711542457000}'),r={name:"elk-growth/Summary/index.md"},n=e("pre",null,[e("code",null,`layout: doc
+`)],-1),s=[n];function d(c,l,i,m,_,p){return o(),a("div",null,s)}const f=t(r,[["render",d]]);export{h as __pageData,f as default};
