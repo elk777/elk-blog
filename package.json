@@ -4,7 +4,9 @@
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
-  "devDependencies": {
-    "vitepress": "1.0.0-alpha.65"
+  "dependencies": {
+    "vitepress": "^1.0.1",
+    "vitepress-theme-demoblock": "^2.0.2"
+
   }
 }
