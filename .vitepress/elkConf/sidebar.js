@@ -1,10 +1,12 @@
 
 import {
     projectSidebarDetails,
-    travelSidebarDetails
+    travelSidebarDetails,
+    noteSidebarDetails
 } from './sidebarDetails'
 
 export const sidebar = {
     ...projectSidebarDetails,
-    ...travelSidebarDetails
+    ...travelSidebarDetails,
+    ...noteSidebarDetails
 }
