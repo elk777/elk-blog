@@ -12,6 +12,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '01-基本类型',
                     link: '/elk-note/TypeScript/01-基本类型'
+                },
+                {
+                    text: '02-任意类型',
+                    link: '/elk-note/TypeScript/02-任意类型'
                 }
             ]
         }
