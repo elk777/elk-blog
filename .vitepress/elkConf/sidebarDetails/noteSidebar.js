@@ -28,6 +28,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '05-函数类型',
                     link: '/elk-note/TypeScript/05-函数类型'
+                },
+                {
+                    text: '06-联合|交叉类型、类型断言',
+                    link: '/elk-note/TypeScript/06-联合、交叉类型，类型断言'
                 }
             ]
         }
