@@ -32,6 +32,14 @@ export const  noteSidebarDetails = {
                 {
                     text: '06-联合|交叉类型、类型断言',
                     link: '/elk-note/TypeScript/06-联合、交叉类型，类型断言'
+                },
+                {
+                    text: '07-内置对象',
+                    link: '/elk-note/TypeScript/07-内置对象'
+                },
+                {
+                    text: '08-Class类',
+                    link: '/elk-note/TypeScript/08-Class类'
                 }
             ]
         }

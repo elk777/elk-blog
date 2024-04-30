@@ -486,8 +486,6 @@ function createArrayInstrumentations() {
   return instrumentations;
 }
 function hasOwnProperty2(key) {
-  if (!isSymbol(key))
-    key = String(key);
   const obj = toRaw(this);
   track(obj, "has", key);
   return obj.hasOwnProperty(key);
@@ -839,16 +837,23 @@ function createInstrumentations() {
     clear: createReadonlyMethod("clear"),
     forEach: createForEach(true, true)
   };
-  const iteratorMethods = [
-    "keys",
-    "values",
-    "entries",
-    Symbol.iterator
-  ];
+  const iteratorMethods = ["keys", "values", "entries", Symbol.iterator];
   iteratorMethods.forEach((method) => {
-    mutableInstrumentations2[method] = createIterableMethod(method, false, false);
-    readonlyInstrumentations2[method] = createIterableMethod(method, true, false);
-    shallowInstrumentations2[method] = createIterableMethod(method, false, true);
+    mutableInstrumentations2[method] = createIterableMethod(
+      method,
+      false,
+      false
+    );
+    readonlyInstrumentations2[method] = createIterableMethod(
+      method,
+      true,
+      false
+    );
+    shallowInstrumentations2[method] = createIterableMethod(
+      method,
+      false,
+      true
+    );
     shallowReadonlyInstrumentations2[method] = createIterableMethod(
       method,
       true,
@@ -1004,7 +1009,7 @@ function isShallow(value) {
   return !!(value && value["__v_isShallow"]);
 }
 function isProxy(value) {
-  return value ? !!value["__v_raw"] : false;
+  return isReactive(value) || isReadonly(value);
 }
 function toRaw(observed) {
   const raw = observed && observed["__v_raw"];
@@ -1495,11 +1500,7 @@ var replacer = (_key, val) => {
 };
 var stringifySymbol = (v, i = "") => {
   var _a;
-  return (
-    // Symbol.description in es2019+ so we need to cast here to pass
-    // the lib: es2016 check
-    isSymbol2(v) ? `Symbol(${(_a = v.description) != null ? _a : i})` : v
-  );
+  return isSymbol2(v) ? `Symbol(${(_a = v.description) != null ? _a : i})` : v;
 };
 
 // node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js
@@ -1701,17 +1702,11 @@ function callWithAsyncErrorHandling(fn, instance, type, args) {
     }
     return res;
   }
-  if (isArray2(fn)) {
-    const values = [];
-    for (let i = 0; i < fn.length; i++) {
-      values.push(callWithAsyncErrorHandling(fn[i], instance, type, args));
-    }
-    return values;
-  } else if (true) {
-    warn$1(
-      `Invalid value type passed to callWithAsyncErrorHandling(): ${typeof fn}`
-    );
+  const values = [];
+  for (let i = 0; i < fn.length; i++) {
+    values.push(callWithAsyncErrorHandling(fn[i], instance, type, args));
   }
+  return values;
 }
 function handleError(err, instance, type, throwInDev = true) {
   const contextVNode = instance ? instance.vnode : null;
@@ -1732,14 +1727,12 @@ function handleError(err, instance, type, throwInDev = true) {
     }
     const appErrorHandler = instance.appContext.config.errorHandler;
     if (appErrorHandler) {
-      pauseTracking();
       callWithErrorHandling(
         appErrorHandler,
         null,
         10,
         [err, exposedInstance, errorInfo]
       );
-      resetTracking();
       return;
     }
   }
@@ -2345,21 +2338,21 @@ function renderComponentRoot(instance) {
     vnode,
     proxy,
     withProxy,
+    props,
     propsOptions: [propsOptions],
     slots,
     attrs,
     emit: emit2,
     render: render2,
     renderCache,
-    props,
     data,
     setupState,
     ctx,
     inheritAttrs
   } = instance;
-  const prev = setCurrentRenderingInstance(instance);
   let result;
   let fallthroughAttrs;
+  const prev = setCurrentRenderingInstance(instance);
   if (true) {
     accessedAttrs = false;
   }
@@ -2381,7 +2374,7 @@ function renderComponentRoot(instance) {
           thisProxy,
           proxyToUse,
           renderCache,
-          true ? shallowReadonly(props) : props,
+          props,
           setupState,
           data,
           ctx
@@ -2395,7 +2388,7 @@ function renderComponentRoot(instance) {
       }
       result = normalizeVNode(
         render22.length > 1 ? render22(
-          true ? shallowReadonly(props) : props,
+          props,
           true ? {
             get attrs() {
               markAttrsAccessed();
@@ -2405,8 +2398,9 @@ function renderComponentRoot(instance) {
             emit: emit2
           } : { attrs, slots, emit: emit2 }
         ) : render22(
-          true ? shallowReadonly(props) : props,
+          props,
           null
+          /* we know it doesn't need it */
         )
       );
       fallthroughAttrs = Component.props ? attrs : getFunctionalFallthrough(attrs);
@@ -3890,19 +3884,11 @@ function emptyPlaceholder(vnode) {
   }
 }
 function getKeepAliveChild(vnode) {
-  if (!isKeepAlive(vnode)) {
-    return vnode;
-  }
-  if (vnode.component) {
-    return vnode.component.subTree;
-  }
-  const { shapeFlag, children } = vnode;
-  if (shapeFlag & 16) {
-    return children[0];
-  }
-  if (shapeFlag & 32 && isFunction2(children.default)) {
-    return children.default();
-  }
+  return isKeepAlive(vnode) ? (
+    // #7121 ensure get the child component subtree in case
+    // it's been replaced during HMR
+    vnode.component ? vnode.component.subTree : vnode.children ? vnode.children[0] : void 0
+  ) : vnode;
 }
 function setTransitionHooks(vnode, hooks) {
   if (vnode.shapeFlag & 6 && vnode.component) {
@@ -4217,7 +4203,7 @@ var KeepAliveImpl = {
     return () => {
       pendingCacheKey = null;
       if (!slots.default) {
-        return current = null;
+        return null;
       }
       const children = slots.default();
       const rawVNode = children[0];
@@ -4524,9 +4510,6 @@ var isReservedPrefix = (key) => key === "_" || key === "$";
 var hasSetupBinding = (state, key) => state !== EMPTY_OBJ2 && !state.__isScriptSetup && hasOwn2(state, key);
 var PublicInstanceProxyHandlers = {
   get({ _: instance }, key) {
-    if (key === "__v_skip") {
-      return true;
-    }
     const { ctx, setupState, data, props, accessCache, type, appContext } = instance;
     if (key === "__isVue") {
       return true;
@@ -4569,7 +4552,7 @@ var PublicInstanceProxyHandlers = {
     let cssModule, globalProperties;
     if (publicGetter) {
       if (key === "$attrs") {
-        track(instance.attrs, "get", "");
+        track(instance, "get", key);
         markAttrsAccessed();
       } else if (key === "$slots") {
         track(instance, "get", key);
@@ -5493,12 +5476,10 @@ function inject(key, defaultValue, treatDefaultAsFactory = false) {
 function hasInjectionContext() {
   return !!(currentInstance || currentRenderingInstance || currentApp);
 }
-var internalObjectProto = /* @__PURE__ */ Object.create(null);
-var createInternalObject = () => Object.create(internalObjectProto);
-var isInternalObject = (obj) => Object.getPrototypeOf(obj) === internalObjectProto;
 function initProps(instance, rawProps, isStateful, isSSR = false) {
   const props = {};
-  const attrs = createInternalObject();
+  const attrs = {};
+  def2(attrs, InternalObjectKey, 1);
   instance.propsDefaults = /* @__PURE__ */ Object.create(null);
   setFullProps(instance, rawProps, props, attrs);
   for (const key in instance.propsOptions[0]) {
@@ -5613,7 +5594,7 @@ function updateProps(instance, rawProps, rawPrevProps, optimized) {
     }
   }
   if (hasAttrsChanged) {
-    trigger(instance.attrs, "set", "");
+    trigger(instance, "set", "$attrs");
   }
   if (true) {
     validateProps(rawProps || {}, props, instance);
@@ -5956,18 +5937,24 @@ var normalizeVNodeSlots = (instance, children) => {
   instance.slots.default = () => normalized;
 };
 var initSlots = (instance, children) => {
-  const slots = instance.slots = createInternalObject();
   if (instance.vnode.shapeFlag & 32) {
     const type = children._;
     if (type) {
-      extend2(slots, children);
-      def2(slots, "_", type);
+      instance.slots = toRaw(children);
+      def2(children, "_", type);
     } else {
-      normalizeObjectSlots(children, slots);
+      normalizeObjectSlots(
+        children,
+        instance.slots = {}
+      );
     }
-  } else if (children) {
-    normalizeVNodeSlots(instance, children);
+  } else {
+    instance.slots = {};
+    if (children) {
+      normalizeVNodeSlots(instance, children);
+    }
   }
+  def2(instance.slots, InternalObjectKey, 1);
 };
 var updateSlots = (instance, children, optimized) => {
   const { vnode, slots } = instance;
@@ -6137,7 +6124,6 @@ function createHydrationFunctions(rendererInternals) {
     }
   };
   const hydrateNode = (node, vnode, parentComponent, parentSuspense, slotScopeIds, optimized = false) => {
-    optimized = optimized || !!vnode.dynamicChildren;
     const isFragmentStart = isComment(node) && node.data === "[";
     const onMismatch = () => handleMismatch(
       node,
@@ -8617,6 +8603,7 @@ var createVNodeWithArgsTransform = (...args) => {
     ...vnodeArgsTransformer ? vnodeArgsTransformer(args, currentRenderingInstance) : args
   );
 };
+var InternalObjectKey = `__vInternal`;
 var normalizeKey = ({ key }) => key != null ? key : null;
 var normalizeRef = ({
   ref: ref2,
@@ -8749,7 +8736,7 @@ Component that was made reactive: `,
 function guardReactiveProps(props) {
   if (!props)
     return null;
-  return isProxy(props) || isInternalObject(props) ? extend2({}, props) : props;
+  return isProxy(props) || InternalObjectKey in props ? extend2({}, props) : props;
 }
 function cloneVNode(vnode, extraProps, mergeRef = false) {
   const { props, ref: ref2, patchFlag, children } = vnode;
@@ -8854,7 +8841,7 @@ function normalizeChildren(vnode, children) {
     } else {
       type = 32;
       const slotFlag = children._;
-      if (!slotFlag && !isInternalObject(children)) {
+      if (!slotFlag && !(InternalObjectKey in children)) {
         children._ctx = currentRenderingInstance;
       } else if (slotFlag === 3 && currentRenderingInstance) {
         if (currentRenderingInstance.slots._ === 1) {
@@ -9091,7 +9078,7 @@ function setupStatefulComponent(instance, isSSR) {
     }
   }
   instance.accessCache = /* @__PURE__ */ Object.create(null);
-  instance.proxy = new Proxy(instance.ctx, PublicInstanceProxyHandlers);
+  instance.proxy = markRaw(new Proxy(instance.ctx, PublicInstanceProxyHandlers));
   if (true) {
     exposePropsOnRenderContext(instance);
   }
@@ -9225,26 +9212,31 @@ function finishComponentSetup(instance, isSSR, skipOptions) {
     }
   }
 }
-var attrsProxyHandlers = true ? {
-  get(target, key) {
-    markAttrsAccessed();
-    track(target, "get", "");
-    return target[key];
-  },
-  set() {
-    warn$1(`setupContext.attrs is readonly.`);
-    return false;
-  },
-  deleteProperty() {
-    warn$1(`setupContext.attrs is readonly.`);
-    return false;
-  }
-} : {
-  get(target, key) {
-    track(target, "get", "");
-    return target[key];
-  }
-};
+function getAttrsProxy(instance) {
+  return instance.attrsProxy || (instance.attrsProxy = new Proxy(
+    instance.attrs,
+    true ? {
+      get(target, key) {
+        markAttrsAccessed();
+        track(instance, "get", "$attrs");
+        return target[key];
+      },
+      set() {
+        warn$1(`setupContext.attrs is readonly.`);
+        return false;
+      },
+      deleteProperty() {
+        warn$1(`setupContext.attrs is readonly.`);
+        return false;
+      }
+    } : {
+      get(target, key) {
+        track(instance, "get", "$attrs");
+        return target[key];
+      }
+    }
+  ));
+}
 function getSlotsProxy(instance) {
   return instance.slotsProxy || (instance.slotsProxy = new Proxy(instance.slots, {
     get(target, key) {
@@ -9278,10 +9270,9 @@ function createSetupContext(instance) {
     instance.exposed = exposed || {};
   };
   if (true) {
-    let attrsProxy;
     return Object.freeze({
       get attrs() {
-        return attrsProxy || (attrsProxy = new Proxy(instance.attrs, attrsProxyHandlers));
+        return getAttrsProxy(instance);
       },
       get slots() {
         return getSlotsProxy(instance);
@@ -9293,7 +9284,9 @@ function createSetupContext(instance) {
     });
   } else {
     return {
-      attrs: new Proxy(instance.attrs, attrsProxyHandlers),
+      get attrs() {
+        return getAttrsProxy(instance);
+      },
       slots: instance.slots,
       emit: instance.emit,
       expose
@@ -9627,7 +9620,7 @@ function isMemoSame(cached, memo) {
   }
   return true;
 }
-var version = "3.4.24";
+var version = "3.4.21";
 var warn2 = true ? warn$1 : NOOP2;
 var ErrorTypeStrings = ErrorTypeStrings$1;
 var devtools = true ? devtools$1 : void 0;
@@ -9652,8 +9645,6 @@ function makeMap3(str, expectsLowerCase) {
 }
 var EMPTY_OBJ3 = true ? Object.freeze({}) : {};
 var EMPTY_ARR3 = true ? Object.freeze([]) : [];
-var NOOP3 = () => {
-};
 var isOn2 = (key) => key.charCodeAt(0) === 111 && key.charCodeAt(1) === 110 && // uppercase letter
 (key.charCodeAt(2) > 122 || key.charCodeAt(2) < 97);
 var isModelListener2 = (key) => key.startsWith("onUpdate:");
@@ -9971,8 +9962,8 @@ function resolveTransitionProps(rawProps) {
       el._isLeaving = true;
       const resolve2 = () => finishLeave(el, done);
       addTransitionClass(el, leaveFromClass);
-      addTransitionClass(el, leaveActiveClass);
       forceReflow();
+      addTransitionClass(el, leaveActiveClass);
       nextFrame(() => {
         if (!el._isLeaving) {
           return;
@@ -10205,8 +10196,8 @@ function useCssVars(getter) {
     setVarsOnVNode(instance.subTree, vars);
     updateTeleports(vars);
   };
+  watchPostEffect(setVars);
   onMounted(() => {
-    watchPostEffect(setVars);
     const ob = new MutationObserver(setVars);
     ob.observe(instance.subTree.el.parentNode, { childList: true });
     onUnmounted(() => ob.disconnect());
@@ -10425,14 +10416,11 @@ function patchEvent(el, rawName, prevValue, nextValue, instance = null) {
   const invokers = el[veiKey] || (el[veiKey] = {});
   const existingInvoker = invokers[rawName];
   if (nextValue && existingInvoker) {
-    existingInvoker.value = true ? sanitizeEventValue(nextValue, rawName) : nextValue;
+    existingInvoker.value = nextValue;
   } else {
     const [name, options] = parseName(rawName);
     if (nextValue) {
-      const invoker = invokers[rawName] = createInvoker(
-        true ? sanitizeEventValue(nextValue, rawName) : nextValue,
-        instance
-      );
+      const invoker = invokers[rawName] = createInvoker(nextValue, instance);
       addEventListener(el, name, invoker, options);
     } else if (existingInvoker) {
       removeEventListener(el, name, existingInvoker, options);
@@ -10475,16 +10463,6 @@ function createInvoker(initialValue, instance) {
   invoker.attached = getNow();
   return invoker;
 }
-function sanitizeEventValue(value, propName) {
-  if (isFunction3(value) || isArray3(value)) {
-    return value;
-  }
-  warn2(
-    `Wrong type passed as event handler to ${propName} - did you forget @ or : in front of your prop?
-Expected function or array of functions, received type ${typeof value}.`
-  );
-  return NOOP3;
-}
 function patchStopImmediatePropagation(e, value) {
   if (isArray3(value)) {
     const originalStop = e.stopImmediatePropagation;
@@ -10492,9 +10470,7 @@ function patchStopImmediatePropagation(e, value) {
       originalStop.call(e);
       e._stopped = true;
     };
-    return value.map(
-      (fn) => (e2) => !e2._stopped && fn && fn(e2)
-    );
+    return value.map((fn) => (e2) => !e2._stopped && fn && fn(e2));
   } else {
     return value;
   }
@@ -10687,7 +10663,7 @@ var VueElement = class _VueElement extends BaseClass {
     }
   }
   _setAttr(key) {
-    let value = this.hasAttribute(key) ? this.getAttribute(key) : void 0;
+    let value = this.getAttribute(key);
     const camelKey = camelize3(key);
     if (this._numberProps && this._numberProps[camelKey]) {
       value = toNumber2(value);
@@ -10851,28 +10827,7 @@ var TransitionGroupImpl = {
       const rawProps = toRaw(props);
       const cssTransitionProps = resolveTransitionProps(rawProps);
       let tag = rawProps.tag || Fragment;
-      prevChildren = [];
-      if (children) {
-        for (let i = 0; i < children.length; i++) {
-          const child = children[i];
-          if (child.el && child.el instanceof Element) {
-            prevChildren.push(child);
-            setTransitionHooks(
-              child,
-              resolveTransitionHooks(
-                child,
-                cssTransitionProps,
-                state,
-                instance
-              )
-            );
-            positionMap.set(
-              child,
-              child.el.getBoundingClientRect()
-            );
-          }
-        }
-      }
+      prevChildren = children;
       children = slots.default ? getTransitionRawChildren(slots.default()) : [];
       for (let i = 0; i < children.length; i++) {
         const child = children[i];
@@ -10883,6 +10838,16 @@ var TransitionGroupImpl = {
           );
         } else if (true) {
           warn2(`<TransitionGroup> children must be keyed.`);
+        }
+      }
+      if (prevChildren) {
+        for (let i = 0; i < prevChildren.length; i++) {
+          const child = prevChildren[i];
+          setTransitionHooks(
+            child,
+            resolveTransitionHooks(child, cssTransitionProps, state, instance)
+          );
+          positionMap.set(child, child.el.getBoundingClientRect());
         }
       }
       return createVNode(tag, null, children);
@@ -10982,7 +10947,7 @@ var vModelText = {
     el[assignKey] = getModelAssigner(vnode);
     if (el.composing)
       return;
-    const elValue = (number || el.type === "number") && !/^0\d/.test(el.value) ? looseToNumber2(el.value) : el.value;
+    const elValue = number || el.type === "number" ? looseToNumber2(el.value) : el.value;
     const newValue = value == null ? "" : value;
     if (elValue === newValue) {
       return;
@@ -11085,14 +11050,14 @@ var vModelSelect = {
   // set value in mounted & updated because <select> relies on its children
   // <option>s.
   mounted(el, { value, modifiers: { number } }) {
-    setSelected(el, value);
+    setSelected(el, value, number);
   },
   beforeUpdate(el, _binding, vnode) {
     el[assignKey] = getModelAssigner(vnode);
   },
   updated(el, { value, modifiers: { number } }) {
     if (!el._assigning) {
-      setSelected(el, value);
+      setSelected(el, value, number);
     }
   }
 };
@@ -11112,7 +11077,9 @@ function setSelected(el, value, number) {
       if (isArrayValue) {
         const optionType = typeof optionValue;
         if (optionType === "string" || optionType === "number") {
-          option.selected = value.some((v) => String(v) === String(optionValue));
+          option.selected = value.includes(
+            number ? looseToNumber2(optionValue) : optionValue
+          );
         } else {
           option.selected = looseIndexOf(value, optionValue) > -1;
         }
@@ -11565,30 +11532,28 @@ export {
 
 @vue/shared/dist/shared.esm-bundler.js:
   (**
-  * @vue/shared v3.4.24
+  * @vue/shared v3.4.21
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
-  (*! #__NO_SIDE_EFFECTS__ *)
 
 @vue/reactivity/dist/reactivity.esm-bundler.js:
   (**
-  * @vue/reactivity v3.4.24
+  * @vue/reactivity v3.4.21
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
 
 @vue/shared/dist/shared.esm-bundler.js:
   (**
-  * @vue/shared v3.4.24
+  * @vue/shared v3.4.21
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
-  (*! #__NO_SIDE_EFFECTS__ *)
 
 @vue/runtime-core/dist/runtime-core.esm-bundler.js:
   (**
-  * @vue/runtime-core v3.4.24
+  * @vue/runtime-core v3.4.21
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -11596,15 +11561,14 @@ export {
 
 @vue/shared/dist/shared.esm-bundler.js:
   (**
-  * @vue/shared v3.4.24
+  * @vue/shared v3.4.21
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
-  (*! #__NO_SIDE_EFFECTS__ *)
 
 @vue/runtime-dom/dist/runtime-dom.esm-bundler.js:
   (**
-  * @vue/runtime-dom v3.4.24
+  * @vue/runtime-dom v3.4.21
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
@@ -11612,9 +11576,9 @@ export {
 
 vue/dist/vue.runtime.esm-bundler.js:
   (**
-  * vue v3.4.24
+  * vue v3.4.21
   * (c) 2018-present Yuxi (Evan) You and Vue contributors
   * @license MIT
   **)
 */
-//# sourceMappingURL=chunk-5ILLXTE7.js.map
+//# sourceMappingURL=chunk-UFNDOTXN.js.map
