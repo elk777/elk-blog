@@ -14,8 +14,8 @@ class Person {
     static id: number;
     private hobby: number;
     protected sex: string;
-    name: string;
-    age: number;
+    public name: string;
+    public age: number;
     constructor(name: string, age: number) {
         this.name = name;
         this.age = age;
@@ -55,5 +55,35 @@ class Person {
 }
 
 ````
+
+### interface在类中的应用
+TS中通过 implements 来
+```typescript
+interface PersonClass {
+  get(type: boolean): boolean
+}
+interface StudentClass {
+  name: string
+  set():void
+}  
+class Person {
+  age: number            
+  constructor(age:number) {
+    this.age = age;
+  }
+}
+class Student extends Person implements PersonClass,StudentClass {
+  name: string
+  constructor(name:string) {
+    super(18)
+    this.name = name
+  }
+  set(){}
+  get(show: boolean){
+    return show
+  }
+}
+let elk = new Student('elk')
+```
 
 ### 虚拟dom[简单实现demo]
