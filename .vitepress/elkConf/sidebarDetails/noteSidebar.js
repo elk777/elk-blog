@@ -48,6 +48,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '10-枚举类型',
                     link: '/elk-note/TypeScript/10-枚举类型'
+                },
+                {
+                    text: '11-类型推论|类型别名',
+                    link: '/elk-note/TypeScript/11-类型推论|类型别名'
                 }
 
             ]
