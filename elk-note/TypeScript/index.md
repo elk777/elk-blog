@@ -29,3 +29,5 @@ Window内置对象、BOM、DOM、Promise
 [TS-08-Class类](08-Class类.md)<br/>
 类的定义、修饰符、继承、静态成员
 
+[TS-09-元组类型](09-元组类型.md)<br/>
+

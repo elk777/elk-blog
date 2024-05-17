@@ -40,7 +40,12 @@ export const  noteSidebarDetails = {
                 {
                     text: '08-Class类',
                     link: '/elk-note/TypeScript/08-Class类'
+                },
+                {
+                    text: '09-元组类型',
+                    link: '/elk-note/TypeScript/09-元组类型'
                 }
+
             ]
         }
     ]
