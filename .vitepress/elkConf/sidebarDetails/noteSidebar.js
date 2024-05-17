@@ -44,6 +44,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '09-元组类型',
                     link: '/elk-note/TypeScript/09-元组类型'
+                },
+                {
+                    text: '10-枚举类型',
+                    link: '/elk-note/TypeScript/10-枚举类型'
                 }
 
             ]
