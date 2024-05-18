@@ -52,8 +52,15 @@ export const  noteSidebarDetails = {
                 {
                     text: '11-类型推论|类型别名',
                     link: '/elk-note/TypeScript/11-类型推论|类型别名'
-                }
-
+                },
+                {
+                    text: '12-symbol类型',
+                    link: '/elk-note/TypeScript/12-symbol类型'
+                },
+                {
+                    text: '13-泛型',
+                    link: '/elk-note/TypeScript/13-泛型'
+                },
             ]
         }
     ]
