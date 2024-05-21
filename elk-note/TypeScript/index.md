@@ -39,8 +39,8 @@ Window内置对象、BOM、DOM、Promise
 类型推论、类型别名
 
 [TS-12-symbol类型](12-symbol类型.md)<br/>
-定义
+定义、unique symbol、类型推断
+
 [TS-13-泛型](13-泛型.md)<br/>
-定义、使用方法
-13-泛型.md
+定义、使用方法、类型约束、使用注意点
 
