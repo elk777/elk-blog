@@ -44,3 +44,6 @@ Window内置对象、BOM、DOM、Promise
 [TS-13-泛型](13-泛型.md)<br/>
 定义、使用方法、类型约束、使用注意点
 
+[TS-14-模块解析](14-模块解析.md)<br/>
+Commonjs、AMD、CMD、UMD、ES6模块化
+

@@ -61,6 +61,10 @@ export const  noteSidebarDetails = {
                     text: '13-泛型',
                     link: '/elk-note/TypeScript/13-泛型'
                 },
+                {
+                    text: '14-模块解析',
+                    link: '/elk-note/TypeScript/14-模块解析'
+                },
             ]
         }
     ]
