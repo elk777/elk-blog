@@ -47,3 +47,9 @@ Window内置对象、BOM、DOM、Promise
 [TS-14-模块解析](14-模块解析.md)<br/>
 Commonjs、AMD、CMD、UMD、ES6模块化
 
+[TS-15-声明文件d_ts](15-声明文件d_ts.md)<br/>
+定义、使用、案例
+
+[TS-16-装饰器](16-装饰器.md)<br/>
+16-装饰器.md
+
