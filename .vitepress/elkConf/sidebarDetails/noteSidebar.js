@@ -5,6 +5,7 @@
 * */
 
 export const  noteSidebarDetails = {
+    // TS知识点目录
     '/elk-note/TypeScript/': [
         {
             text: 'TypeScript',
@@ -76,6 +77,7 @@ export const  noteSidebarDetails = {
             ]
         }
     ],
+    // NodeJs知识点目录
     '/elk-note/NodeJs/': [
         {
             text: 'NodeJs',
@@ -83,6 +85,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '01-介绍',
                     link: '/elk-note/NodeJs/01-介绍'
+                },
+                {
+                    text: '02-模块化',
+                    link: '/elk-note/NodeJs/02-模块化'
                 },
             ]
         }
