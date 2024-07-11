@@ -20,7 +20,7 @@ export const nav = [
         text: "学习笔记",
         items: [
             {text: 'TypeScript',link:'/elk-note/TypeScript/'},
-            // {text: 'NodeJS',link: "/elk-note/xxx/"},
+            {text: 'NodeJS',link: "/elk-note/NodeJs/"},
             // {text: 'NestJS',link: "/elk-note/xxx/"},
         ]
     },

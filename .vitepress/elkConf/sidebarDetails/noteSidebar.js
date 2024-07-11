@@ -75,5 +75,16 @@ export const  noteSidebarDetails = {
                 },
             ]
         }
+    ],
+    '/elk-note/NodeJs/': [
+        {
+            text: 'NodeJs',
+            items: [
+                {
+                    text: '01-介绍',
+                    link: '/elk-note/NodeJs/01-介绍'
+                },
+            ]
+        }
     ]
 }
