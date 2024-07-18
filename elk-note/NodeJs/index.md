@@ -10,3 +10,8 @@
 [Node-02-模块化](02-模块化.md)<br/>
 CommonJs规范、ESM规范
 
+[Node-03-全局变量](03-全局变量.md)<br/>
+定义、内置API
+
+[Node-04-CSR|SSR|SEO](04-CSR%7CSSR%7CSEO.md)<br/>
+概述、CSR、SSR、SEO

@@ -90,6 +90,14 @@ export const  noteSidebarDetails = {
                     text: '02-模块化',
                     link: '/elk-note/NodeJs/02-模块化'
                 },
+                {
+                    text: '03-全局变量',
+                    link: '/elk-note/NodeJs/03-全局变量'
+                },
+                {
+                    text: '04-CSR|SSR|SEO',
+                    link: '/elk-note/NodeJs/04-CSR|SSR|SEO'
+                },
             ]
         }
     ]
