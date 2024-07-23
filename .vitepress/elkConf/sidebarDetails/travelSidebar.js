@@ -13,5 +13,16 @@ export  const travelSidebarDetails = {
                 }
             ]
         }
+    ],
+    '/elk-growth/Summary/': [
+        {
+            text: 'Node系列',
+            items: [
+                {
+                    text: 'nvm版本切换问题',
+                    link: '/elk-growth/Summary/Node/nvm版本'
+                }
+            ]
+        }
     ]
 }

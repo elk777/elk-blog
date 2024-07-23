@@ -6,7 +6,7 @@ export const nav = [
         text: "个人成长",
         items: [
             {text: '环游世界',link:'/elk-growth/Travel/'},
-            // {text: '个人总结',link: "/elk-growth/Summary/"}
+            {text: '问题总结',link: "/elk-growth/Summary/"}
         ]
     },
     {
