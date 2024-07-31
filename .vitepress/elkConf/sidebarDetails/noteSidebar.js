@@ -98,6 +98,10 @@ export const  noteSidebarDetails = {
                     text: '04-CSR|SSR|SEO',
                     link: '/elk-note/NodeJs/04-CSR|SSR|SEO'
                 },
+                {
+                    text: '05-path',
+                    link: '/elk-note/NodeJs/05-path'
+                }
             ]
         }
     ]
