@@ -105,6 +105,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '06-os',
                     link: '/elk-note/NodeJs/06-os'
+                },
+                {
+                    text: '07-process',
+                    link: '/elk-note/NodeJs/07-process'
                 }
 
             ]
