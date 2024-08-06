@@ -109,8 +109,11 @@ export const  noteSidebarDetails = {
                 {
                     text: '07-process',
                     link: '/elk-note/NodeJs/07-process'
+                },
+                {
+                    text: '08-child_process',
+                    link: '/elk-note/NodeJs/08-child_process'
                 }
-
             ]
         }
     ]
