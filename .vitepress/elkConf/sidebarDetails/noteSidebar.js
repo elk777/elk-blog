@@ -117,6 +117,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '09-ffmpeg',
                     link: '/elk-note/NodeJs/09-ffmpeg'
+                },
+                {
+                    text: '10-events',
+                    link: '/elk-note/NodeJs/10-events'
                 }
             ]
         }
