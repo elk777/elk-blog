@@ -32,4 +32,7 @@ CommonJs规范、ESM规范
 概述、安装、实例
 
 [Node-10-events](10-events.md)<br/>
-概述
+概述、事件模型、常用API
+
+[Node-11-util](11-util.md)<br/>
+概述、常用API
