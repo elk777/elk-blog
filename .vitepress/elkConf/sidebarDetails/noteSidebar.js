@@ -125,6 +125,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '11-util',
                     link: '/elk-note/NodeJs/11-util'
+                },
+                {
+                    text: '12-fs',
+                    link: '/elk-note/NodeJs/12-fs'
                 }
             ]
         }

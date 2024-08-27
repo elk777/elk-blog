@@ -36,3 +36,6 @@ CommonJs规范、ESM规范
 
 [Node-11-util](11-util.md)<br/>
 概述、常用API
+
+[Node-12-fs](12-fs.md)<br/>
+概述、fs的多种模式、常用api、源码解析、硬链接和软链接
