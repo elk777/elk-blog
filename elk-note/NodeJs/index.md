@@ -39,3 +39,6 @@ CommonJs规范、ESM规范
 
 [Node-12-fs](12-fs.md)<br/>
 概述、fs的多种模式、常用api、源码解析、硬链接和软链接
+
+[Node-13-crypto](13-crypto.md)<br/>
+概述、对称加密、非对称加密、哈希函数
