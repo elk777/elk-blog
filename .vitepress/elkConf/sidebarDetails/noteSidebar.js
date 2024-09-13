@@ -133,6 +133,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '13-crypto',
                     link: '/elk-note/NodeJs/13-crypto'
+                },
+                {
+                    text: '14-cli',
+                    link: '/elk-note/NodeJs/14-cli'
                 }
             ]
         }
