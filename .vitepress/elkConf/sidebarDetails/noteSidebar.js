@@ -141,6 +141,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '15-markdown-html',
                     link: '/elk-note/NodeJs/15-markdown-html'
+                },
+                {
+                    text: '16-zlib',
+                    link: '/elk-note/NodeJs/16-zlib'
                 }
             ]
         }
