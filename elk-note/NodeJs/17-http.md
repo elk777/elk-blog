@@ -104,7 +104,8 @@ http.createServer((req, res) => {
         "Content-Type": 'text/html'
     })
     res.end(html)
-    
+}).listen(80, () => {
+    console.log("server is running at port 80");
 })
 ```
 - index.html
