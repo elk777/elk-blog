@@ -149,6 +149,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '17-http',
                     link: '/elk-note/NodeJs/17-http'
+                },
+                {
+                    text: '18-express',
+                    link: '/elk-note/NodeJs/18-express'
                 }
             ]
         }
