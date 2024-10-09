@@ -157,6 +157,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '19-express-hotLink',
                     link: '/elk-note/NodeJs/19-express-hotLink'
+                },
+                {
+                    text: '20-express-req-res',
+                    link: '/elk-note/NodeJs/20-express-req-res'
                 }
             ]
         }
