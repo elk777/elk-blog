@@ -66,3 +66,6 @@ CommonJs规范、ESM规范
 
 [Node-21-mysql](21-mysql.md)<br/>
 概述、安装
+
+[Node-22-mysql-sql](22-mysql-sql.md)<br/>
+sql语句
