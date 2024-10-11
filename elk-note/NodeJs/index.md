@@ -63,3 +63,6 @@ CommonJs规范、ESM规范
 
 [Node-20-express-req-res](20-express-req-res.md)<br/>
 基本介绍、cors的介绍、额外的请求方式
+
+[Node-21-mysql](21-mysql.md)<br/>
+概述、安装
