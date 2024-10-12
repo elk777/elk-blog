@@ -169,6 +169,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '22-mysql-sql',
                     link: '/elk-note/NodeJs/22-mysql-sql'
+                },
+                {
+                    text: '23-mysql-query',
+                    link: '/elk-note/NodeJs/23-mysql-query'
                 }
             ]
         }

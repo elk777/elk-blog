@@ -68,4 +68,7 @@ CommonJs规范、ESM规范
 概述、安装
 
 [Node-22-mysql-sql](22-mysql-sql.md)<br/>
-sql语句
+sql语句、创建库、创建表、创建列等系列操作
+
+[Node-23-mysql-query](23-mysql-query.md)<br/>
+查询、查询单、多列、列的别名、排序、条件查询、模糊查询
