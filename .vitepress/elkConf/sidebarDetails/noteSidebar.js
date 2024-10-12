@@ -173,6 +173,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '23-mysql-query',
                     link: '/elk-note/NodeJs/23-mysql-query'
+                },
+                {
+                    text: '24-mysql-crud',
+                    link: '/elk-note/NodeJs/24-mysql-crud'
                 }
             ]
         }

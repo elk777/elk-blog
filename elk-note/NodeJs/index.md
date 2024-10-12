@@ -72,3 +72,6 @@ sql语句、创建库、创建表、创建列等系列操作
 
 [Node-23-mysql-query](23-mysql-query.md)<br/>
 查询、查询单、多列、列的别名、排序、条件查询、模糊查询
+
+[Node-24-mysql-crud](24-mysql-crud.md)<br/>
+增删改操作、新增数据、删除数据、批量删除、修改数据
