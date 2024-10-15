@@ -75,3 +75,6 @@ sql语句、创建库、创建表、创建列等系列操作
 
 [Node-24-mysql-crud](24-mysql-crud.md)<br/>
 增删改操作、新增数据、删除数据、批量删除、修改数据
+
+[Node-25-mysql-function](25-mysql-function.md)<br/>
+表达式、函数
