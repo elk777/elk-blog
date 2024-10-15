@@ -19,5 +19,5 @@ DELETE FROM elk_user WHERE name IN ('Tom1', 'Tom2')
 ### 修改数据
 > update 表名 set 字段1 = 值1, 字段2 = 值2 ... where 字段 = 值
 ```sql
-UPDATE elk_user name = 'tom', age = 1 WHERE name = 'Tom'
+UPDATE elk_user set name = 'tom', age = 1 WHERE name = 'Tom'
 ```
