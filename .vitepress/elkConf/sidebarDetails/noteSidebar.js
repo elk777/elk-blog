@@ -181,6 +181,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '25-mysql-function',
                     link: '/elk-note/NodeJs/25-mysql-function'
+                },
+                {
+                    text: '26-mysql-child',
+                    link: '/elk-note/NodeJs/26-mysql-child'
                 }
             ]
         }

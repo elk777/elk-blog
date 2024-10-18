@@ -78,3 +78,6 @@ sql语句、创建库、创建表、创建列等系列操作
 
 [Node-25-mysql-function](25-mysql-function.md)<br/>
 表达式、函数
+
+[Node-26-mysql-child](26-mysql-child.md)<br/>
+子查询、连表
