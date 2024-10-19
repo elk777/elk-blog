@@ -81,3 +81,6 @@ sql语句、创建库、创建表、创建列等系列操作
 
 [Node-26-mysql-child](26-mysql-child.md)<br/>
 子查询、连表
+
+[Node-27-mysql2](27-mysql2.md)<br/>
+介绍依赖、应用
