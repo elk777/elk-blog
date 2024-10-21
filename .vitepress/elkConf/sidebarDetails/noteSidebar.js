@@ -189,6 +189,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '27-mysql2',
                     link: '/elk-note/NodeJs/27-mysql2'
+                },
+                {
+                    text: '28-knex',
+                    link: '/elk-note/NodeJs/28-knex'
                 }
             ]
         }
