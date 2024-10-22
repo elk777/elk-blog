@@ -193,6 +193,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '28-knex',
                     link: '/elk-note/NodeJs/28-knex'
+                },
+                {
+                    text: '29-prisma',
+                    link: '/elk-note/NodeJs/29-prisma'
                 }
             ]
         }
