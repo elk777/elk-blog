@@ -30,20 +30,20 @@ cd prisma
 使用npm初始化TypeScript项目
 ```shell
 npm init -y
-npm install typescript ts-node @type/node --save-dev
+npm install typescript ts-node @types/node --save-dev
 ```
 初始化TypeScript
 ```shell
-npx tes --init
+npx tsc --init
 ```
 安装prisma CLI作为开发依赖
 ```shell
-npx install prisma --save-dev
+npm install prisma --save-dev
 ```
 使用prisma CLI的init命令设置一个prisma ORM
 ```shell
 # 最后面那个使用什么库，写什么库
-npx prisma init -datasource-provider mysql
+npx prisma init --datasource-provider mysql
 ```
 此时会创建一个带有 schema.prisma 文件的新 prisma 目录，并将 mysql 配置为你的数据库
 
