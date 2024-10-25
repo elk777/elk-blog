@@ -201,6 +201,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '30-mvc',
                     link: '/elk-note/NodeJs/30-mvc'
+                },
+                {
+                    text: '31-jwt',
+                    link: '/elk-note/NodeJs/31-jwt'
                 }
             ]
         }
