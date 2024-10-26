@@ -99,3 +99,6 @@ MVC、IoC控制反转和依赖注入、安装依赖、项目架构、代码编�
 
 [Node-32-redis](32-redis.md)<br/>
 概述、安装、可视化工具
+
+[Ndoe-33-redis-basic](33-redis-basic.md)<br/>
+字符串、集合、哈希、列表等操作
