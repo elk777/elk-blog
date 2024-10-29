@@ -105,3 +105,6 @@ MVC、IoC控制反转和依赖注入、安装依赖、项目架构、代码编�
 
 [Node-34-redis-publish](34-redis-publish.md)<br/>
 发布订阅、事务
+
+[Node-35-redis-lasting](35-redis-lasting.md)<br/>
+redis持久化、RDB、AOF
