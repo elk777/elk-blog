@@ -108,3 +108,6 @@ MVC、IoC控制反转和依赖注入、安装依赖、项目架构、代码编�
 
 [Node-35-redis-lasting](35-redis-lasting.md)<br/>
 redis持久化、RDB、AOF
+
+[Node-36-redis-replication](36-redis-replication.md)<br/>
+介绍、配置

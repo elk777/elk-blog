@@ -27,3 +27,41 @@ Redis提供两种持久化方式：
 1、将 appendonly 配置项的值设置为 yes：默认情况下，该配置项的值为 no，表示未启用AOF持久化。将其值修改为 yes，以启用AOF持久化。
 
 ![img_27.png](img_27.png)
+
+## docker中的redis配置
+docker默认没有redis的配置，需要自行本地创建并映射到容器中去
+
+1、之前我们在docker可视化工具中已经将redis pull下来
+
+2、创建 conf、data目录，conf下创建redis.conf配置文件
+
+3、执行docker命令 生成容器
+```shell
+mkdir /redis/{conf,data}
+
+# 这里面可以配置RDB和AOF
+vim /redis/conf/redis.conf
+# 内容
+bind 127.0.0.1 #ip地址
+port 6379 #端口号
+daemonize yes #守护线程静默运行
+
+# 执行命令
+docker run -d --name demo-redis
+-v /文件路径/redis/conf/redis.conf:/etc/redis/redis.conf
+-v /文件路径/redis/data:/data 
+redis redis-server /etc/redis/redis.conf
+
+# docker run: docker命令，用于创建并启动一个容器
+# -d : 分离模式，容器在后台运行
+# -- name demo-redis: 新建容器起的一个别名
+# -v ...redis.conf : 将宿主机上的配置文件挂载到容器中去，这样容器就可以使用宿主机上的配置文件
+# -v ...data: data路径挂载，用于数据持久化，容器重启数据不会丢失
+# redis : 使用的镜像的名称，pull 起的啥名 这里写啥名
+# redis-server /etc/redis/redis.conf : 容器启动后执行的命令，执行指定的配置文件
+```
+命令执行成功之后
+![img_30.png](img_30.png)
+也可在docker desktop中查看一下
+![img_31.png](img_31.png)
+
