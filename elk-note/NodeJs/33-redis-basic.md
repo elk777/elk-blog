@@ -18,11 +18,11 @@ set name 'elk'
 # 2、只有键名 age 不存在时， NX 才生效 键值为 18
 set age 18 nx
 
-# 3、只有键名存在时， xx才生效，键值为22
+# 3、只有键名存在时， xx才生效，键值为20
 set age 20 xx
 
-# 4、设置键名 email，键值为123 过期时间为6s
-set email ex 6
+# 4、设置键名 email，键值为123@qq.com 过期时间为6s
+set email 123@qq.com ex 6
 
 # 5、删除单个键名
 del age
