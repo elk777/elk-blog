@@ -111,3 +111,6 @@ redis持久化、RDB、AOF
 
 [Node-36-redis-replication](36-redis-replication.md)<br/>
 介绍、配置
+
+[Node-37-ioredis](37-ioredis.md)<br/>
+介绍、使用

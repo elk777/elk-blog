@@ -225,6 +225,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '36-redis-replication',
                     link: '/elk-note/NodeJs/36-redis-replication'
+                },
+                {
+                    text: '37-ioredis',
+                    link: '/elk-note/NodeJs/37-ioredis'
                 }
             ]
         }
