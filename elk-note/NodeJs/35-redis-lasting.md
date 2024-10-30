@@ -47,7 +47,7 @@ port 6379 #端口号
 daemonize yes #守护线程静默运行
 
 # 执行命令
-docker run -d --name demo-redis
+docker run -d --name demo-redis -p 63791:6379
 -v /文件路径/redis/conf/redis.conf:/etc/redis/redis.conf
 -v /文件路径/redis/data:/data 
 redis redis-server /etc/redis/redis.conf
@@ -55,6 +55,7 @@ redis redis-server /etc/redis/redis.conf
 # docker run: docker命令，用于创建并启动一个容器
 # -d : 分离模式，容器在后台运行
 # -- name demo-redis: 新建容器起的一个别名
+# -p 63791:6379 : 63791 宿主机访问端口，6379 容器redis内部端口
 # -v ...redis.conf : 将宿主机上的配置文件挂载到容器中去，这样容器就可以使用宿主机上的配置文件
 # -v ...data: data路径挂载，用于数据持久化，容器重启数据不会丢失
 # redis : 使用的镜像的名称，pull 起的啥名 这里写啥名
