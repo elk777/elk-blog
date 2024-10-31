@@ -114,3 +114,6 @@ redis持久化、RDB、AOF
 
 [Node-37-ioredis](37-ioredis.md)<br/>
 介绍、使用
+
+[Node-28-lua](38-lua.md)<br/>
+介绍、安装和使用

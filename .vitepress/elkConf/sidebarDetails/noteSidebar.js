@@ -229,6 +229,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '37-ioredis',
                     link: '/elk-note/NodeJs/37-ioredis'
+                },
+                {
+                    text: '38-lua',
+                    link: '/elk-note/NodeJs/38-lua'
                 }
             ]
         }
