@@ -121,3 +121,5 @@ redis持久化、RDB、AOF
 [Node-39-lua-basic](39-lua-basic.md)<br/>
 基本使用、基本类型、模块化
 
+[Node-40-lua-practice-1](40-lua-practice-1.md)<br/>
+限流功能、所需依赖、代码实现

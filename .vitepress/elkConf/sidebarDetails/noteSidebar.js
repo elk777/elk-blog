@@ -237,6 +237,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '39-lua-basic',
                     link: '/elk-note/NodeJs/39-lua-basic'
+                },
+                {
+                    text: '40-lua-practice-1',
+                    link: '/elk-note/NodeJs/40-lua-practice-1'
                 }
             ]
         }
