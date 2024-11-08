@@ -126,3 +126,6 @@ redis持久化、RDB、AOF
 
 [Node-41-timedTask](41-timedTask.md)<br/>
 定时任务、所需依赖、cron表达式、代码编写
+
+[Node-42-serverLess](42-serverLess.md)<br/>
+介绍、FaaS与SaaS、代码编写

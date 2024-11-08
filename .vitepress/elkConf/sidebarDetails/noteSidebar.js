@@ -245,6 +245,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '41-timedTask',
                     link: '/elk-note/NodeJs/41-timedTask'
+                },
+                {
+                    text: '42-serverLess',
+                    link: '/elk-note/NodeJs/42-serverLess'
                 }
             ]
         }
