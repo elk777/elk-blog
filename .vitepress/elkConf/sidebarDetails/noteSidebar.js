@@ -249,6 +249,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '42-serverLess',
                     link: '/elk-note/NodeJs/42-serverLess'
+                },
+                {
+                    text: '43-net',
+                    link: '/elk-note/NodeJs/43-net'
                 }
             ]
         }
