@@ -74,6 +74,13 @@ http.listen(3000,()=>{
      console.log('listening on 3000')
 })
 ```
+socket可以监听很多事件:
+
+- close 一旦套接字完全关闭就触发
+- connect 当成功建立套接字连接时触发
+- data 接收到数据时触发
+- end 当套接字的另一端表示传输结束时触发，从而结束套接字的可读端
+
 此时直接在网址访问
 
 ![img_45.png](img_45.png)
