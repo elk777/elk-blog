@@ -132,3 +132,6 @@ redis持久化、RDB、AOF
 
 [Node-43-net](43-net.md)<br/>
 介绍、场景
+
+[Node-44-socketIO](44-socketIO.md)<br/>
+介绍、依赖安装、聊天室案例

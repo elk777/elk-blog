@@ -253,6 +253,10 @@ export const  noteSidebarDetails = {
                 {
                     text: '43-net',
                     link: '/elk-note/NodeJs/43-net'
+                },
+                {
+                    text: '44-socketIO',
+                    link: '/elk-note/NodeJs/44-socketIO'
                 }
             ]
         }
