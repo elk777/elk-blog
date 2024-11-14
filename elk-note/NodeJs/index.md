@@ -135,3 +135,6 @@ redis持久化、RDB、AOF
 
 [Node-44-socketIO](44-socketIO.md)<br/>
 介绍、依赖安装、聊天室案例
+
+[Node-45-reptile](45-reptile.md)<br/>
+爬虫介绍、依赖安装、脚本编写
