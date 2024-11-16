@@ -29,8 +29,8 @@ export const voluntarilySideBar = (dir, textDir = '') => {
     let results = [];
     // 获取指定地址下的文件目录信息
     const catalogues = fs.readdirSync(rootDir + dir + textDir);
-    // 过滤掉后缀名以及index文件
-    const mapCatalogs = catalogues.map( item => item.split(".")[0]).filter(item => item !== 'index')
+    // 过滤掉后缀名以及index.md文件和非.md文件
+    const mapCatalogs = catalogues.filter(item => item !== 'index.md' && path.extname(item) == '.md' ).map( item => item.split(".")[0])
     // 添加完整路径
     mapCatalogs.forEach( item => {
         results.push({
