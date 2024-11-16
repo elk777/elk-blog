@@ -28,7 +28,7 @@ export default defineConfig({
     },
     // 顶部右上： github图标
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/elk777' }
+      { icon: 'github', link: 'https://github.com/elk777' },
     ],
 
     // 博客页脚

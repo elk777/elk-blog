@@ -21,7 +21,7 @@ export const nav = [
         items: [
             {text: 'TypeScript',link:'/elk-note/TypeScript/'},
             {text: 'NodeJS',link: "/elk-note/NodeJs/"},
-            // {text: 'NestJS',link: "/elk-note/xxx/"},
+            {text: 'NestJS',link: "/elk-note/NestJs/"},
         ]
     },
     {
