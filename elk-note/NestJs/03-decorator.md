@@ -50,7 +50,7 @@ const method: MethodDecorator = (target: Object, propertyKey: string | symbol, d
   console.log("🚀 ~ method ~ target:", target) // 接收的是class C类的原型对象
   console.log("🚀 ~ method ~ propertyKey:", propertyKey) // 接收的是getName这个方法
   console.log("🚀 ~ method ~ descriptor:", descriptor) // 接收的是getName方法的描述对象
-  /* 
+  /*
     descriptor
      {
         value: ƒ getName(), // 表示getName方法
@@ -85,6 +85,42 @@ class D {
     }
     getName(@params name: string) {
       return this.name
+    }
+}
+```
+## 案例
+封装一个装饰器，用于请求接口
+```shell
+npm install axios -s
+```
+```typescript
+import axios from "axios";
+/* 
+    const Get: MethodDecorator = (target: Object, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
+        console.log("🚀 ~ return ~ descriptor:", descriptor)
+        console.log("🚀 ~ return ~ propertyKey:", propertyKey)
+        console.log("🚀 ~ return ~ target:", target)
+    }
+*/
+// 装饰器工厂
+const Get = (url: string):MethodDecorator => {
+    return (target: Object, propertyKey: string | symbol, descriptor: PropertyDescriptor) => {
+        const fn = descriptor.value;
+        axios.get(url).then( res => {
+            fn.call(target, res.data, {status: 200})
+        }).catch( err => {
+            fn.call(target, err, {status: 500})
+        })
+    }
+}
+class Controller {
+    constructor() {}
+    // 如果此时装饰器需要传参，默认的方法是不支持的
+    // 这里用到了装饰器工厂
+    @Get('https://api.apiopen.top/api/getHaoKanVideo?page=0&size=10')
+    getList(res: any, status: any) {
+        console.log("🚀 ~ Controller ~ getList ~ res:", res.result)
+        console.log("🚀 ~ Controller ~ getList ~ status:", status)
     }
 }
 ```
