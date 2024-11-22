@@ -12,3 +12,6 @@
 
 [Nest-03-decorator](03-decorator.md)<br/>
 介绍、案例和实现
+
+[Nest-04-cli](04-cli.md)<br/>
+安装、目录介绍
