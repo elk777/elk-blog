@@ -27,3 +27,9 @@
 
 [Nest-08-session](08-session.md)<br/>
 介绍、依赖及配置、案例
+
+[Nest-09-providers](09-providers.md)<br/>
+概述、基本用法、自定义名称、自定义注入值、工厂模式、异步模式
+
+[Nest-10-module](10-module.md)<br/>
+概述
