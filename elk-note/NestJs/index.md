@@ -32,4 +32,7 @@
 概述、基本用法、自定义名称、自定义注入值、工厂模式、异步模式
 
 [Nest-10-module](10-module.md)<br/>
+概述、基本使用、共享模块、全局模块、动态模块
+
+[Nest-11-middleware](11-middleware.md)<br/>
 概述
