@@ -35,4 +35,7 @@
 概述、基本使用、共享模块、全局模块、动态模块
 
 [Nest-11-middleware](11-middleware.md)<br/>
-概述
+概述、简单应用、函数式中间件、多个中间件、全局中间件
+
+[Nest-12-upload_file](12-upload_file.md)<br/>
+概述、使用插件、基本使用
