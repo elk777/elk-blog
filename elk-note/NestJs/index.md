@@ -39,3 +39,6 @@
 
 [Nest-12-upload_file](12-upload_file.md)<br/>
 概述、使用插件、基本使用
+
+[Nest-13-download_file](13-download_file.md)<br/>
+概述、download直接下载、文件流式下载
