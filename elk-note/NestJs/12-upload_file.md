@@ -26,12 +26,13 @@ import { UploadController } from './upload.controller';
 
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { join } from 'path';
 
 @Module({
     imports: [
         MulterModule.register({
             storage: diskStorage({
-                destination: './uploads', // 存放目录
+                destination: join(__dirname, '../static', 'uploads'), // 存放目录
                 filename: (req, file, cb) => {
                     const filename = `${Date.now()}-${file.originalname}`;
                     return cb(null, filename);
@@ -76,9 +77,12 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import { join } from 'path'
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.useStaticAssets(join(__dirname,'uploads'),{
+  app.useStaticAssets(join(__dirname,'./static','uploads'),{
      prefix: '/files'
   })
   await app.listen(3000);
 }
+
+// 通过  http://localhost:3000/files/文件名.后缀名 访问上传的图片
+// 例如：http://localhost:3000/files/1733453555559-file.jpg
 ```
