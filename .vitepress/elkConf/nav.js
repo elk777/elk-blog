@@ -13,7 +13,7 @@ export const nav = [
         text: "个人项目",
         items: [
             {text: '项目实践',link:'/elk-project/Project/'},
-            // {text: '工具实践',link: "/elk-project/Tools/"}
+            {text: '工具实践',link: "/elk-project/Tools/"}
         ]
     },
     {
