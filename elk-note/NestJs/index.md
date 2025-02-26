@@ -54,3 +54,6 @@
 
 [Nest-17-pipe](17-pipe.md)<br/>
 概述、案例
+
+[Nest-18-pipeVerify](18-pipeVerify.md)<br/>
+概述、基于结构的验证、对象结构验证、绑定结构验证、类验证、全局管道
