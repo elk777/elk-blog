@@ -66,3 +66,6 @@
 
 [Nest-21-customDecorator](21-customDecorator.md)<br/>
 概述、参数装饰器、传递数据、装饰器聚合
+
+[Nest-22-nestjsSwagger](22-nestjsSwagger.md)<br/>
+概述、注册、通用装饰器使用、其他装饰器
