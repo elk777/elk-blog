@@ -25,6 +25,13 @@ export const nav = [
         ]
     },
     {
+        text: "面试笔记",
+        items: [
+            {text: '面试经历',link:'/elk-interview/Moreau/'},
+            {text: '面试知识点',link: "/elk-interview/Ability/"},
+        ]
+    },
+    {
         text: "关于我",
         items: [
             {text: 'github',link:'https://github.com/elk777'},

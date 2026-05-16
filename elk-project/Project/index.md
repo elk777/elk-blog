@@ -1,3 +1,11 @@
+<!--
+ * @Author: elk
+ * @Date: 2024-03-27 14:33:41
+ * @LastEditors: elk 
+ * @LastEditTime: 2026-05-16 10:49:33
+ * @FilePath: /elk-note/elk-project/Project/index.md
+ * @Description: 文件内容描述语
+-->
 
 ## 序言
 本专栏收录了我个人参与的各类项目实践，以及基于日常学习过程中将学习到的知识运用到实际项目中，通过项目实战去加深知识点。
@@ -8,7 +16,7 @@
 
 ### elk-bigscreen
 
-[基于vue3、pinia、echarts的可视化项目]( elk-bigscreen.md)
+[基于vue3、pinia、echarts的可视化项目](elk-bigscreen.md)
 
 
 

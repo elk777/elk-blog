@@ -1,17 +1,26 @@
+/*
+ * @Author: elk
+ * @Date: 2026-05-16 10:41:32
+ * @LastEditors: elk 
+ * @LastEditTime: 2026-05-16 11:05:17
+ * @FilePath: /elk-note/.vitepress/config.mjs
+ * @Description: 配置文件
+ */
 import { defineConfig } from 'vitepress'
 import  { nav, sidebar } from './elkConf/index'
 
 export default defineConfig({
   // 基础配置
   base: '/elk-blog/', // 基础路径
+  srcExclude: ['README.md'],
   title: "灰原同学的猫",
   titleTemplate: "欢迎您",
   lastUpdated: true,
   // 主题配置
   themeConfig: {
     // 顶部左侧标题logo
-    logo: '/icon.png',
-
+    logo: '/public/icon.png',
+    
     // 顶部右上：专题栏
     nav: nav,
 
