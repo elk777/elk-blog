@@ -39,7 +39,7 @@ bootstrap();
 ```
 ## 访问
 
-http://localhost:3000/api#/ 
+`http://localhost:3000/api#/ `
 
 ![img_52.png](img_52.png)
 
