@@ -11,10 +11,6 @@ on:
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
 
-# 强制所有 Actions 使用 Node.js 24 运行时
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 # 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
   contents: read
@@ -33,11 +29,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
@@ -48,7 +44,7 @@ jobs:
       - name: Build with VitePress
         run: npm run docs:build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .vitepress/dist
 
@@ -63,4 +59,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
